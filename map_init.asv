@@ -1,0 +1,6 @@
+
+for i = 1:6 
+    S = shaperead('boston_roads.shp','Selector',...
+       {@(v1) (v1 <= 1), 'CLASS'}  )
+    save(sprintf('class_%u.mat'))
+end
