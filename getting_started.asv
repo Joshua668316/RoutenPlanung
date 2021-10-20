@@ -1,11 +1,19 @@
+clear All
+close All
+clc
+
 roadspec = makesymbolspec('Line',...
                           {'ADMIN_TYPE',0,'Color','cyan'}, ...
                           {'ADMIN_TYPE',3,'Color','red'},...
                           {'CLASS',6,'Visible','on'},...
                           {'CLASS',[1 4],'LineWidth',2},...
                           {'CLASS',[1 4], 'Color','blue'});
-S = shaperead('boston_roads.shp','Selector',...
-       {@(v1) (v1 <= 1), 'CLASS'}  )
-sh = load('road_class_1.mat')
+
+streets = load('allGeo.mat');
+R = worldfileread('boston_image.tif');
+image = imread('boston_image.jpeg');
 figure
-mapshow(sh.shp,'SymbolSpec',roadspec);
+mapshow(streets.allGeo,'SymbolSpec',roadspec);
+
+axis image
+title('Boston')

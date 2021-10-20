@@ -1,6 +1,22 @@
+clear all
+close all
+clc
 
-for i = 1:6 
-    S = shaperead('boston_roads.shp','Selector',...
-       {@(v1) (v1 <= 1), 'CLASS'}  )
-    save(sprintf('class_%u.mat'))
-end
+image = imread('boston_image.jpeg');
+[h w] = size(image)
+pixelCoords = [1498 1388 ;226  496 ;252 2224];
+%pixelCoords(:,1) = h * ones(length(pixelCoords), 1) - pixelCoords(:,1);
+refPoints = [-71.08997207696231 42.30743386485034; -71.20609037067116  42.42926559019955; -70.98148240328808 42.42622692483229];
+R = calc_world_file(pixelCoords, refPoints);
+
+allGeo = load('allGeo.mat');
+
+figure
+axis image
+imshow(image)
+%mapshow(image, R)
+%mapshow(allGeo.allGeo)
+%mapshow(get_lat_lon_from_boston())
+%'franklin park: 42.34734970925119, -71.09718861143013, 94 321
+% 90 edge: 42.350314151495574, -71.03219610926209, 593 281
+% 93 park upper left: 42.37227406795695, -71.07510579753769 263 53

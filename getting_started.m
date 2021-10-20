@@ -9,5 +9,12 @@ roadspec = makesymbolspec('Line',...
                           {'CLASS',[1 4],'LineWidth',2},...
                           {'CLASS',[1 4], 'Color','blue'});
 
+streets = load('allGeo.mat');
+R = worldfileread('boston_image.tif');
+image = imread('boston_image.jpeg');
 figure
-mapshow('boston_roads.shp','SymbolSpec',roadspec);
+mapshow(image,R)
+mapshow(streets.allGeo,'SymbolSpec',roadspec);
+
+axis image
+title('Boston')
